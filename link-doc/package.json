@@ -1,0 +1,26 @@
+{
+  "name": "link-doc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "tsc": "tsc src/**.ts -w --outDir dist --esModuleInterop true --inlineSourceMap true",
+    "tsc-test": "tsc tests/**.ts -w --outDir tests --esModuleInterop true --inlineSourceMap true",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^15.6.0",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "remark-parse": "^9.0.0",
+    "unified": "^9.2.1"
+  }
+}
