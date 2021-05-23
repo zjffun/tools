@@ -1,10 +1,17 @@
+const fs = require("fs");
 const path = require("path");
-import linkDoc from "../dist/link-doc.js";
+import linkDoc from "../src/link-doc";
 
 console.log(__filename, __dirname, process);
 
-linkDoc(
-  path.resolve(__dirname, "README.zh-CN.md"),
-  path.resolve(__dirname, "README.md"),
-  __dirname
+const linkjson = linkDoc(
+  path.resolve(process.cwd(), "tests/README.zh-CN.md"),
+  path.resolve(process.cwd(), "tests/README.md")
 );
+
+linkjson.then((d) => {
+  fs.writeFileSync(
+    path.resolve(process.cwd(), ".link-doc/vue-shopify-reandme.json"),
+    JSON.stringify(d, null, 2)
+  );
+});

@@ -10,7 +10,7 @@ var markdown = require("remark-parse");
 
 const processor = unified().use(markdown);
 
-export default async (filePath, sourceFilePath, dirname) => {
+export default async (filePath, sourceFilePath) => {
   const fileHash = await execAsync(`git hash-object -- ${filePath}`);
   const sourceHash = await execAsync(`git hash-object -- ${sourceFilePath}`);
   const lines = [];
@@ -51,7 +51,7 @@ export default async (filePath, sourceFilePath, dirname) => {
 
   let tfileLine = 0;
   let tsourceFileLine = 0;
-  const diffFile = path.resolve(dirname, "diff.txt");
+  const diffFile = path.resolve(process.cwd(), ".link-doc/diff.txt");
   fs.writeFileSync(diffFile, "");
   res.lines.forEach((line) => {
     if (tsourceFileLine !== line.source.start.line) {
@@ -75,7 +75,10 @@ export default async (filePath, sourceFilePath, dirname) => {
       // fs.appendFileSync(diffFile, "--------ldfileend\n");
     }
 
-    fs.appendFileSync(diffFile, "<<<<<<< source --- aaaa --------ldsourcestart\n");
+    fs.appendFileSync(
+      diffFile,
+      "<<<<<<< source --- aaaa --------ldsourcestart\n"
+    );
     // fs.appendFileSync(diffFile, "--------ldsourcestart\n");
     while (tsourceFileLine <= line.source.end.line) {
       fs.appendFileSync(

@@ -8,7 +8,7 @@
   },
   "scripts": {
     "tsc": "tsc src/**.ts -w --outDir dist --esModuleInterop true --inlineSourceMap true",
-    "tsc-test": "tsc tests/**.ts -w --outDir tests --esModuleInterop true --inlineSourceMap true",
+    "tsc-test": "tsc tests/**.ts src/**.ts -w --outDir dist-tests --esModuleInterop true --inlineSourceMap true",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
